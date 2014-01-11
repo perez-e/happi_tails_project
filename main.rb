@@ -30,10 +30,8 @@ while choice != 'q'
     message += "All animals in the #{shelter.name}:\n#{shelter.display_animals.join("\n")}"
     # Display all animals in shelter
   when "2"
-    message += 'Something here'
+    message += "Clients of the #{shelter.name}:\n#{shelter.display_clients.join("\n")}"
     # Display all clients of shelter
-    puts shelter.display_clients
-    shel
   when "3"
     message += 'Something here'
     # Display available units
