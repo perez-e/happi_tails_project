@@ -27,7 +27,7 @@ while choice != 'q'
   message = ""
   case choice
   when "1"
-    message += 'Someting here'
+    message += "All animals in the #{shelter.name}:\n#{shelter.display_animals.join("\n")}"
     # Display all animals in shelter
   when "2"
     message += 'Something here'
