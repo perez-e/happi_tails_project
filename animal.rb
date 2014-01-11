@@ -8,4 +8,8 @@ Class Animal
 		@species = species
 		@toys = []
 	end
+
+	def get_info
+		"#{@species}: #{@name}"
+	end
 end
