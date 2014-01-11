@@ -10,7 +10,7 @@ class Client
 	end
 
 	def get_info
-		"#{@name}: #{@pets}"
+		"name: #{@name}\npets: #{@pets}\n"
 	end
 
 	def put_for_adoption(name)
