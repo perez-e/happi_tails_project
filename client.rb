@@ -10,13 +10,15 @@ class Client
 	end
 
 	def get_info
-		"name: #{@name}\npets: #{@pets}\n"
+		pet_str = ""
+		@pets.each {|pet| pet_str << "#{pet.name} -> #{pet.species}, "}
+		"name: #{@name}\npets: #{pet_str[0...-2]}\n"
 	end
 
 	def put_for_adoption(name)
 		@pets.each do |pet|
-			if pet.name == name
-				@pets.delete pet
+			if pet.name.downcase == name.downcase
+				return @pets.delete pet
 			end
 		end
 	end
