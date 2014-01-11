@@ -22,6 +22,10 @@ class Shelter
 		@animals << animal
 	end
 
+	def add_client(client)
+		@clients << client
+	end
+
 	def remove_animal(name)
 		@animals.each do |animal|
 			if animal.name == name
