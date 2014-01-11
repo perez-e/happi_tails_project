@@ -35,4 +35,18 @@ class Shelter
 		end
 	end
 
+	def has_client?(name)
+		!@clients.select {|client| client.name.downcase == name.downcase}.empty?
+	end
+
+	def has_animal?(name)
+		!@animals.select {|animal| animal.name.downcase == name.downcase}.empty?
+	end
+
+	def access_client(name)
+		@clients.each do |client|
+			return client if client.name.downcase == name.downcase
+		end
+	end
+
 end
