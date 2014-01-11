@@ -10,6 +10,7 @@ Class Animal
 	end
 
 	def get_info
-		"#{@species}: #{@name}"
+		"name: #{@name}".ljust(12) + "species: #{@species}".ljust(12) +
+		"age: #{@age}".ljust(12) + "gender: #{@gender}"
 	end
 end
