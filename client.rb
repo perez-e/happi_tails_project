@@ -26,4 +26,8 @@ class Client
 	def adopt_animal(animal)
 		@pets << animal
 	end
+
+	def has_pet?(name)
+		!@pets.select {|pet| pet.name.downcase == name.downcase}.empty?
+	end
 end
