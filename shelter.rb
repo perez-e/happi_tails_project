@@ -18,7 +18,16 @@ class Shelter
 		end
 	end
 
-	def add_animal_to_shelter(animal)
+	def add_animal(animal)
 		@animals << animal
 	end
+
+	def remove_animal(name)
+		@animals.each do |animal|
+			if animal.name == name
+				@animals.delete animal
+			end
+		end
+	end
+
 end
