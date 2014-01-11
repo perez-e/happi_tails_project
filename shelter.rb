@@ -1,4 +1,5 @@
 class Shelter
+	attr_reader :name, :address, :clients, :animals
 	def initialize(name, address)
 		@name = name
 		@address = address
@@ -28,8 +29,8 @@ class Shelter
 
 	def remove_animal(name)
 		@animals.each do |animal|
-			if animal.name == name
-				@animals.delete animal
+			if animal.name.downcase == name.downcase
+				return @animals.delete animal
 			end
 		end
 	end
