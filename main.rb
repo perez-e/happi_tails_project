@@ -73,19 +73,14 @@ while choice != 'q'
     puts shelter.display_animals
     print "\nWhich animal does #{client_name} want to adopt? [enter name of animal] "
     animal_name = gets.chomp
-    animal_condition = nil
-    shelter.clients.each do |client|
-      if client.name.downcase == client_name.downcase
-        animal_condition = shelter.has_animal?(animal_name)
-        client.adopt_animal(shelter.remove_animal(animal_name)) if shelter.has_animal?(animal_name)
-      end
-    end
-    if animal_condition && shelter.has_client?(client_name)
+
+    if shelter.has_animal?(animal_name) && shelter.has_client?(client_name)
+      client = shelter.access_client(client_name)
+      client.adopt_animal(shelter.remove_animal(animal_name))
       puts "\nAnimal transaction occured"
       puts "\n[Enter to Continue]"
       gets
       message += "#{client_name} successfully adopted #{animal_name}"
-    # Promp for client, and which animal
     else
       message = "Error occurred during adoption process. Invalid client or animal."
     end
