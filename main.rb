@@ -26,12 +26,15 @@ choice = menu message
 while choice != 'q'
   message = ""
   case choice
+    
   when "1"
     message += "All animals in the #{shelter.name}:\n#{shelter.display_animals.join("\n")}"
     # Display all animals in shelter
+
   when "2"
     message += "Clients of the #{shelter.name}:\n#{shelter.display_clients.join("\n")}"
     # Display all clients of shelter
+
   when "3"
     # 1.) prompt for name, species, gender, age
     # 2.) create instance of animal
@@ -50,6 +53,7 @@ while choice != 'q'
     puts "\n[Enter to Continue]"
     gets
     message += "Successfully added #{species} #{name} to #{shelter.name}"
+
   when "4"
     # 1.) promp for name, age
     # 2.) create instance of client
@@ -64,6 +68,7 @@ while choice != 'q'
     puts "\n[Enter to Continue]"
     gets
     message += "Successfully added #{name} as client to #{shelter.name}"
+
   when "5"
     puts "Available clients to choose from:"
     puts shelter.display_clients.join("\n")
@@ -90,25 +95,27 @@ while choice != 'q'
     puts shelter.display_clients.join("\n")
     print "\nWhich client wants to put a pet up for adoption? [enter name of client] "
     client_name = gets.chomp
-    pet_condition = nil
-    shelter.clients.each do |client|
-      if client.name.downcase == client_name.downcase
-        puts "\nClient's Info:"
-        puts client.get_info
-        print "\nWhich pet is #{client_name} willing to depart with? [enter name of pet] "
-        pet_name = gets.chomp
-        pet_condition = client.has_pet?(pet_name)
-        shelter.add_animal(client.put_for_adoption(pet_name)) if client.has_pet?(pet_name)
+
+    if shelter.has_client?(client_name)
+      client = shelter.access_client(client_name)
+      puts "\nClient's Info:"
+      puts client.get_info
+      print "\nWhich pet is #{client_name} willing to depart with? [enter name of pet] "
+      pet_name = gets.chomp
+
+      if client.has_pet?(pet_name)
+        shelter.add_animal(client.put_for_adoption(pet_name))
+        puts "\nPet transaction occured"
+        puts "\n[Enter to Continue]"
+        gets
+        message += "#{client_name} successully put #{animal_name} up for adoption."
+      else
+        message = "Error occurred during putting up for adoption. Invalid client or animal."
       end
-    end
-    if shelter.has_client?(client_name) && pet_condition
-      puts "\nPet transaction occured"
-      puts "\n[Enter to Continue]"
-      gets
-      message += "#{client_name} successully put #{animal_name} up for adoption."
     else
       message = "Error occurred during putting up for adoption. Invalid client or animal."
     end
+
   else
       message += "I don't understand ..."
   end
