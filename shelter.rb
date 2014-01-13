@@ -49,4 +49,10 @@ class Shelter
 		end
 	end
 
+	def access_animal(name)
+		@animals.each do |animal|
+			return animal if animal.name.downcase == name.downcase
+		end
+	end
+
 end
